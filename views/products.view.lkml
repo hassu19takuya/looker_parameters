@@ -18,6 +18,19 @@ view: products {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Brand" in Explore.
 
+  dimension: selected_brand {
+    label: "所属ブランド"
+    type: string
+    sql:
+        {% if _user_attributes['brand'] contains "%" %}
+          "全ブランド"
+        {% else %}
+          "{{_user_attributes['brand']}}"
+        {% endif %}
+
+    ;;
+  }
+
   dimension: brand {
     label: "ブランド"
     type: string
