@@ -58,6 +58,9 @@ explore: parameter_sample {
     type: left_outer
   }
 
-
+  access_filter: {
+    field: products.brand
+    user_attribute: brand
+  }
 
 }

@@ -236,6 +236,8 @@ view: +order_items {
           (FORMAT_TIMESTAMP('%Y-%m', CURRENT_DATE() ))
         {% elsif this_date_selector._parameter_value == "yy" %}
           EXTRACT(YEAR FROM CURRENT_DATE())
+        {% else %}
+          "未選択"
         {% endif %}
     ;;
   }
@@ -434,6 +436,7 @@ view: +order_items {
   measure: selected_measure {
     label: "選択集計値"
     description: "パラメーターと同時利用で機能します"
+    type: number
     sql:
         {% if measure_selector._parameter_value == "sales" %}
           ${total_sale_price}
