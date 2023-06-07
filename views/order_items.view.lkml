@@ -450,6 +450,23 @@ view: +order_items {
     ;;
   }
 
+  ## 何週前を簡単にフィルターできるためのパラメーター
+  parameter: set_privious {
+    label: "何週前？"
+    type: number
+    default_value: "1"
+  }
 
+  dimension: start_date {
+    type: date
+    sql: DATE_TRUNC((DATE_SUB(CURRENT_DATE() , INTERVAL {% parameter set_privious %} WEEK)), WEEK) ;;
+    datatype: date
+  }
+
+  dimension: end_date {
+    type: date
+    sql: DATE_SUB(DATE_TRUNC((DATE_SUB(CURRENT_DATE() , INTERVAL ({% parameter set_privious %}-1) WEEK)), WEEK), INTERVAL 1 DAY) ;;
+    datatype: date
+  }
 
 }

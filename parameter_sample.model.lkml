@@ -36,6 +36,10 @@ explore: parameter_sample {
         {% else %}
           1 = 1
         {% endif %}
+
+        {% if order_items.set_privious._parameter_value != null %}
+          AND (${order_items.created_date} >= ${order_items.start_date} and ${order_items.created_date} <= ${order_items.end_date})
+        {% endif %}
   ;;
 
   join: users {
